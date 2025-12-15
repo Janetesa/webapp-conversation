@@ -2,53 +2,104 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================
-   NO SESSION - ULTIMATE CLEAN UP
-   ========================================= */
+/* =================================================================
+   NO SESSION - TERMINAL FINAL ARCHITECT (NUCLEAR EDITION)
+   ================================================================= */
 
-/* 1. 【完全黒化】背景を黒くし、文字を白にする */
-html, body, div, section, main, article, aside,
+/* -----------------------------------------------------------
+   1. 【基本世界】フォントと背景の完全統一
+   ----------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+}
+
+/* 全要素を強制的に黒背景・白文字・等幅フォントにする */
+* {
+    font-family: 'Courier New', Courier, monospace !important; /* ターミナル風フォント */
+    scrollbar-width: thin;
+    scrollbar-color: #333 #000;
+}
+
+html, body, #__next, div, section, main, article, aside, nav, header, footer,
 .bg-white, .bg-gray-50, .bg-gray-100 {
     background-color: #000000 !important;
     color: #ffffff !important;
+    border-color: #000000 !important; /* 不要な線は黒で塗りつぶす */
 }
 
-/* 2. 【ノイズ除去】ロゴ、Copyright、Powered by、ヘッダーを消滅させる */
-header, footer, 
-[class*="footer"], [class*="copyright"], 
-.text-xs.text-gray-400 { /* ← 細かい著作権表示などを狙い撃ち */
+/* -----------------------------------------------------------
+   2. 【ノイズ除去】「Chat APP」「Powered by」などの特定要素を消滅させる
+   ----------------------------------------------------------- */
+
+/* 画像（ロボットアイコンなど）をすべて消す */
+img, svg {
     display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
+}
+
+/* 画面上部のヘッダーバー（高さがある箱）を強制非表示 */
+/* Difyのヘッダーは特定のクラスがない場合が多いので、構造で消します */
+div[class*="header"], 
+div[class*="Header"],
+nav {
+    display: none !important;
     height: 0 !important;
     overflow: hidden !important;
 }
 
-/* 3. 【境界線の削除】うっすら見える線をすべて消す */
-*, ::before, ::after {
-    border-color: transparent !important;
-    box-shadow: none !important;
+/* 画面下部のフッター、著作権、Powered by を消す */
+div[class*="footer"], 
+div[class*="copyright"], 
+a[href*="dify.ai"], /* Difyへのリンクを消す */
+.text-xs { /* 小さい文字（著作権表示など）をまとめて消す */
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
-/* 4. 【ボタンの復元】消した枠線のうち、ボタンと入力欄だけは見えるようにする */
+/* -----------------------------------------------------------
+   3. 【スクロールバー】あらゆる場所の白いバーを黒くする
+   ----------------------------------------------------------- */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #000000;
+}
+*::-webkit-scrollbar-track {
+    background-color: #000000;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #333333; /* 持ち手だけ濃いグレー */
+    border-radius: 4px;
+    border: 1px solid #000000;
+}
+
+/* -----------------------------------------------------------
+   4. 【主役】ボタンと入力欄だけを浮かび上がらせる
+   ----------------------------------------------------------- */
+
+/* 赤いボタン */
 button, [role="button"], .btn,
 [class*="bg-blue-"], [class*="bg-primary-"] {
     background-color: #FF3B30 !important;
     color: #ffffff !important;
-    border: 1px solid #FF3B30 !important; /* 赤い枠線だけ復活 */
-    border-radius: 4px !important;
+    border: 1px solid #FF3B30 !important;
+    border-radius: 2px !important; /* 角張らせる */
+    font-weight: bold !important;
+    text-transform: uppercase !important; /* 文字を大文字にして威圧感を出す */
+    box-shadow: 0 0 10px rgba(255, 59, 48, 0.3) !important; /* 赤い光を放つ */
 }
 
-/* 5. 【入力エリアの整形】入力欄を目立たせる */
+/* 入力欄（文字を打つ場所） */
 input, textarea {
-    background-color: #111111 !important;
-    color: #ffffff !important;
-    border: 1px solid #333333 !important; /* ここは濃いグレーの枠 */
-    border-radius: 0 !important; /* 角張らせる */
+    background-color: #0a0a0a !important;
+    color: #00ff00 !important; /* 入力文字だけハッカーっぽく緑にする（お好みで白 #fff も可） */
+    border: 1px solid #333333 !important;
 }
 
-/* 6. 【テキスト整理】ようこそメッセージなどを目立たなくする */
-h1, h2, h3, .text-gray-800, .text-gray-900 {
-    color: #ffffff !important;
-    font-family: 'Roboto Mono', monospace !important; /* フォントも統一 */
+/* -----------------------------------------------------------
+   5. 【レイアウト整理】サイドバーとメイン画面の境界
+   ----------------------------------------------------------- */
+/* サイドバーの境界線だけうっすら残して、画面分割を分かりやすくする */
+div[class*="border-r"] {
+    border-right: 1px solid #333333 !important;
 }

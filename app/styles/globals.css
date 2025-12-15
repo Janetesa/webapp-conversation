@@ -3,58 +3,52 @@
 @tailwind utilities;
 
 /* =========================================
-   NO SESSION - TERMINAL ULTIMATE THEME
+   NO SESSION - ULTIMATE CLEAN UP
    ========================================= */
 
-/* 1. 【ブラックホール設定】
-   divやsectionを含め、すべての箱の背景を強制的に黒く塗りつぶす
-   （これで白い箱は二度と出てこれません） */
-html, body, div, section, main, article, aside, header, footer,
+/* 1. 【完全黒化】背景を黒くし、文字を白にする */
+html, body, div, section, main, article, aside,
 .bg-white, .bg-gray-50, .bg-gray-100 {
     background-color: #000000 !important;
     color: #ffffff !important;
-    border-color: #333333 !important;
 }
 
-/* 2. 【インディゴ・レッド設定】
-   ボタンや青い要素だけは、黒の上から「赤」で上書きする
-   （クラス指定はdivタグ指定より強いため、ここは赤になります） */
+/* 2. 【ノイズ除去】ロゴ、Copyright、Powered by、ヘッダーを消滅させる */
+header, footer, 
+[class*="footer"], [class*="copyright"], 
+.text-xs.text-gray-400 { /* ← 細かい著作権表示などを狙い撃ち */
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 3. 【境界線の削除】うっすら見える線をすべて消す */
+*, ::before, ::after {
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 4. 【ボタンの復元】消した枠線のうち、ボタンと入力欄だけは見えるようにする */
 button, [role="button"], .btn,
 [class*="bg-blue-"], [class*="bg-primary-"] {
     background-color: #FF3B30 !important;
     color: #ffffff !important;
-    border: 1px solid #FF3B30 !important;
+    border: 1px solid #FF3B30 !important; /* 赤い枠線だけ復活 */
+    border-radius: 4px !important;
 }
 
-/* ホバーした時も少し暗い赤にする */
-button:hover, [role="button"]:hover,
-[class*="hover:bg-blue-"]:hover {
-    background-color: #d93026 !important;
-}
-
-/* テキストリンクの青色も赤にする */
-[class*="text-blue-"], [class*="text-primary-"] {
-    color: #FF3B30 !important;
-}
-
-/* 3. 【入力欄の設定】
-   真っ黒だと入力欄がわからなくなるので、濃いグレーにする */
-input, textarea, select {
+/* 5. 【入力エリアの整形】入力欄を目立たせる */
+input, textarea {
     background-color: #111111 !important;
     color: #ffffff !important;
-    border: 1px solid #444 !important;
+    border: 1px solid #333333 !important; /* ここは濃いグレーの枠 */
+    border-radius: 0 !important; /* 角張らせる */
 }
 
-/* 4. 【スクロールバーの闇化】
-   右端に出ている白いバーを黒くする */
-::-webkit-scrollbar {
-    width: 10px;
-    background: #000000;
-}
-::-webkit-scrollbar-track {
-    background: #000000;
-}
-::-webkit-scrollbar-thumb {
-    background: #333333;
-    border-radius: 5px;
+/* 6. 【テキスト整理】ようこそメッセージなどを目立たなくする */
+h1, h2, h3, .text-gray-800, .text-gray-900 {
+    color: #ffffff !important;
+    font-family: 'Roboto Mono', monospace !important; /* フォントも統一 */
 }

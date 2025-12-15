@@ -3,55 +3,58 @@
 @tailwind utilities;
 
 /* =========================================
-   TERMINAL THEME FINAL OVERRIDE
+   NO SESSION - TERMINAL ULTIMATE THEME
    ========================================= */
 
-/* 1. 基本設定: 背景を黒、文字を白にする */
-:root {
-  color-scheme: dark;
-}
-
-html, body, #__next {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-
-/* 2. 強制インディゴ・レッド化（青い要素をすべて狙い撃ち） */
-
-/* 青色・プライマリ色の背景を持つ要素（ボタンなど）を赤くする */
-[class*="bg-blue-"], [class*="bg-primary-"] {
-    background-color: #FF3B30 !important;
-    color: #ffffff !important;
-}
-
-/* ホバー時の色も赤くする */
-[class*="hover:bg-blue-"]:hover, [class*="hover:bg-primary-"]:hover {
-    background-color: #d93026 !important; /* 少し暗い赤 */
-}
-
-/* 青色の文字や枠線を赤くする */
-[class*="text-blue-"], [class*="text-primary-"] {
-    color: #FF3B30 !important;
-}
-[class*="border-blue-"], [class*="border-primary-"] {
-    border-color: #FF3B30 !important;
-}
-
-/* 3. その他の白い要素を黒く塗りつぶす */
-[class*="bg-white"], [class*="bg-gray-"], [class*="bg-slate-"], .bg-white {
+/* 1. 【ブラックホール設定】
+   divやsectionを含め、すべての箱の背景を強制的に黒く塗りつぶす
+   （これで白い箱は二度と出てこれません） */
+html, body, div, section, main, article, aside, header, footer,
+.bg-white, .bg-gray-50, .bg-gray-100 {
     background-color: #000000 !important;
     color: #ffffff !important;
     border-color: #333333 !important;
 }
 
-/* 4. 入力欄をターミナル風にする */
-input, textarea {
-    background-color: #1a1a1a !important;
+/* 2. 【インディゴ・レッド設定】
+   ボタンや青い要素だけは、黒の上から「赤」で上書きする
+   （クラス指定はdivタグ指定より強いため、ここは赤になります） */
+button, [role="button"], .btn,
+[class*="bg-blue-"], [class*="bg-primary-"] {
+    background-color: #FF3B30 !important;
     color: #ffffff !important;
-    border: 1px solid #333 !important;
+    border: 1px solid #FF3B30 !important;
 }
 
-/* 5. 不要な影（シャドウ）を消す */
-[class*="shadow-"] {
-    box-shadow: none !important;
+/* ホバーした時も少し暗い赤にする */
+button:hover, [role="button"]:hover,
+[class*="hover:bg-blue-"]:hover {
+    background-color: #d93026 !important;
+}
+
+/* テキストリンクの青色も赤にする */
+[class*="text-blue-"], [class*="text-primary-"] {
+    color: #FF3B30 !important;
+}
+
+/* 3. 【入力欄の設定】
+   真っ黒だと入力欄がわからなくなるので、濃いグレーにする */
+input, textarea, select {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+}
+
+/* 4. 【スクロールバーの闇化】
+   右端に出ている白いバーを黒くする */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #000000;
+}
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 5px;
 }

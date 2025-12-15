@@ -2,42 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 基本設定：すべてを黒くする */
+/* =========================================
+   TERMINAL THEME FINAL OVERRIDE
+   ========================================= */
+
+/* 1. 基本設定: 背景を黒、文字を白にする */
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  color-scheme: dark;
 }
 
-/* 【最強設定】白い背景を持つ要素をすべて強制的に黒くする */
-html, body, div, section, main, 
-.bg-white, .bg-gray-50, .bg-gray-100, .bg-slate-50 {
+html, body, #__next {
     background-color: #000000 !important;
-    background: #000000 !important;
     color: #ffffff !important;
 }
 
-/* 黒文字（見出しなど）を強制的に白くする */
-h1, h2, h3, p, span, 
-.text-gray-900, .text-gray-800, .text-gray-700, .text-black {
-    color: #ffffff !important;
-}
+/* 2. 強制インディゴ・レッド化（青い要素をすべて狙い撃ち） */
 
-/* ボタンを強制的に「インディゴ・レッド」にする */
-button, [role="button"], .btn-primary {
+/* 青色・プライマリ色の背景を持つ要素（ボタンなど）を赤くする */
+[class*="bg-blue-"], [class*="bg-primary-"] {
     background-color: #FF3B30 !important;
-    border-color: #FF3B30 !important;
     color: #ffffff !important;
 }
 
-/* 入力欄をダークグレーにする */
+/* ホバー時の色も赤くする */
+[class*="hover:bg-blue-"]:hover, [class*="hover:bg-primary-"]:hover {
+    background-color: #d93026 !important; /* 少し暗い赤 */
+}
+
+/* 青色の文字や枠線を赤くする */
+[class*="text-blue-"], [class*="text-primary-"] {
+    color: #FF3B30 !important;
+}
+[class*="border-blue-"], [class*="border-primary-"] {
+    border-color: #FF3B30 !important;
+}
+
+/* 3. その他の白い要素を黒く塗りつぶす */
+[class*="bg-white"], [class*="bg-gray-"], [class*="bg-slate-"], .bg-white {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #333333 !important;
+}
+
+/* 4. 入力欄をターミナル風にする */
 input, textarea {
     background-color: #1a1a1a !important;
     color: #ffffff !important;
     border: 1px solid #333 !important;
 }
 
-/* 青いリンクやアクセントも赤に変える */
-.text-blue-600, .text-primary-600 {
-    color: #FF3B30 !important;
+/* 5. 不要な影（シャドウ）を消す */
+[class*="shadow-"] {
+    box-shadow: none !important;
 }

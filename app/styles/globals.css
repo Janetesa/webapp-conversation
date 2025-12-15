@@ -3,82 +3,61 @@
 @tailwind utilities;
 
 /* =================================================================
-   NO SESSION - FINAL STABLE EDITION (Green Text & Fixed Layout)
+   NO SESSION - REPAIR EDITION (Safety First)
    ================================================================= */
 
-/* 1. 【基本世界】背景は黒、フォントはターミナル風 */
-:root {
-  color-scheme: dark;
-}
-
-html, body, #__next, main {
+/* 1. 【背景】画面全体を黒くする（divなどへの無差別攻撃をやめる） */
+html, body, #__next {
     background-color: #000000 !important;
     color: #ffffff !important;
     font-family: 'Courier New', Courier, monospace !important;
 }
 
-/* 2. 【チャットバブルの修復】レイアウト崩れを直しつつ色を変える */
+/* 2. 【チャットの吹き出し】ここだけを狙って色を変える */
 
-/* ユーザー（右側）：赤背景、白文字 */
-[class*="bg-blue-"], [class*="bg-primary-"] {
-    background-color: #FF3B30 !important; /* インディゴ・レッド */
+/* ユーザー（あなた）：赤背景に白文字 */
+[class*="bg-primary-"], [class*="bg-blue-"] {
+    background-color: #FF3B30 !important;
     color: #ffffff !important;
     border: none !important;
-    word-break: break-word !important; /* ←【修正】文字が突き抜けないようにする */
 }
 
-/* AI（左側）：濃いグレー背景、白文字 */
-.bg-white, .bg-gray-50, .bg-gray-100 {
-    background-color: #111111 !important; /* ほぼ黒に近いグレー */
+/* AI（ロボット）：黒に近いグレー背景に白文字 */
+.bg-gray-100, .bg-gray-50, .bg-white {
+    background-color: #111111 !important;
     color: #ffffff !important;
     border: 1px solid #333 !important;
-    word-break: break-word !important; /* ←【修正】文字が突き抜けないようにする */
 }
 
-/* 3. 【入力エリア】ご希望の「緑の文字」を適用 */
-input, textarea {
+/* 3. 【入力エリア】緑の文字、黒い背景 */
+textarea, input[type="text"] {
     background-color: #000000 !important;
-    color: #00ff00 !important; /* ← ここで緑色を指定 */
+    color: #00ff00 !important; /* ネオングリーン */
     border: 1px solid #333 !important;
     caret-color: #FF3B30 !important; /* カーソルは赤 */
-    font-family: 'Courier New', Courier, monospace !important;
 }
-/* プレースホルダー（入力前の薄い文字）も見やすくする */
 ::placeholder {
-    color: #555555 !important;
+    color: #444 !important;
 }
 
 /* 4. 【ボタン】START CHATボタン */
-button, [role="button"], .btn-primary {
+button {
     background-color: #FF3B30 !important;
     color: #ffffff !important;
     border: 1px solid #FF3B30 !important;
-    font-weight: bold !important;
     text-transform: uppercase !important;
-    border-radius: 0px !important; /* カクカクにする */
+    border-radius: 4px !important;
 }
 
-/* 5. 【ノイズ除去】Chat APPのロゴやヘッダーを消す */
-
-/* ヘッダーエリアを透明にして隠す */
-nav, div[class*="header"] {
-    opacity: 0 !important;
-    height: 0 !important;
-    pointer-events: none !important;
-    overflow: hidden !important;
-}
-
-/* ロゴ画像やアイコンを消す */
-img, svg {
+/* 5. 【不要なものを消す】ヘッダーとフッターのみ */
+nav, 
+div[class*="header"], 
+div[class*="footer"], 
+.text-xs.text-gray-400 {
     display: none !important;
 }
 
-/* フッターや著作権表示を消す */
-div[class*="footer"], .text-xs {
-    display: none !important;
-}
-
-/* 6. 【スクロールバー】黒くする */
+/* 6. 【スクロールバー】シンプルに黒く */
 ::-webkit-scrollbar {
     width: 8px;
     background: #000000;
@@ -86,4 +65,9 @@ div[class*="footer"], .text-xs {
 ::-webkit-scrollbar-thumb {
     background: #333;
     border-radius: 4px;
+}
+
+/* 【重要】あの「変な表（思考ログ）」が出ないように隠す設定 */
+[class*="workflow"], [class*="trace"], [class*="thought"] {
+    display: none !important;
 }

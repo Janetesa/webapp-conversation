@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ここにカスタムスタイルを追記します */
+/* =========================================
+   Vercel App: Final Black Background Fix
+   ========================================= */
 
+/* Difyのデフォルトの白い背景を全て黒に強制上書きする */
+.bg-white, .bg-gray-50, .bg-gray-100 {
+    background-color: #000000 !important;
+    background: #000000 !important;
+}
 
+/* 埋め込み時のフレームの背景も黒にする */
+html, body, #__next {
+    background-color: #000000 !important;
+}
+
+/* 不要なロゴやPowered byを非表示にする */
+div[class*="header"], div[class*="footer"], 
+.text-xs.text-gray-400, img[alt*="logo"] {
+    display: none !important;
+}
+
+/* ターミナル風フォントを維持 */
+* {
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+/* スクロールバーの黒化を維持 */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
